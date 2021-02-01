@@ -1,25 +1,25 @@
 from util.Node import Node
 
 
-def print_inorder(node):
+def func_inorder(func, node):
     if node:
-        print_inorder(node.left)
-        print(node)
-        print_inorder(node.right)
+        func_inorder(func, node.left)
+        func(node.value)
+        func_inorder(func, node.right)
 
 
-def print_postorder(node):
+def func_postorder(func, node):
     if node:
-        print_postorder(node.left)
-        print_postorder(node.right)
-        print(node)
+        func_postorder(func, node.left)
+        func_postorder(func, node.right)
+        func(node.value)
 
 
-def print_preorder(node):
+def func_preorder(func, node):
     if node:
-        print(node)
-        print_preorder(node.left)
-        print_preorder(node.right)
+        func(node.value)
+        func_preorder(func, node.left)
+        func_preorder(func, node.right)
 
 
 if __name__ == "__main__":
@@ -38,13 +38,19 @@ if __name__ == "__main__":
     root.add(7)
 
     # Good for sorting by value
-    print(print_inorder)
-    print_inorder(root)
+    inorder = []
+    print(func_inorder)
+    func_inorder(inorder.append, root)
+    print(inorder)
 
     # Good for removing leaves first
-    print(print_postorder)
-    print_postorder(root)
+    postorder = []
+    print(func_postorder)
+    func_postorder(postorder.append, root)
+    print(postorder)
 
     # Good for showing tranversal of b-tree starting left
-    print(print_preorder)
-    print_preorder(root)
+    preorder = []
+    print(func_preorder)
+    func_preorder(preorder.append, root)
+    print(preorder)
